@@ -1,10 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta property="vk:app_id" content="12345678"> <!-- замените на ID вашего приложения -->
-  <title>Бум Тап 💥 воздушные шары</title>
+  <title>Бум Тап · ВК стиль</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,135 +17,146 @@
     }
 
     body {
-      background: #0c0b1a;
+      background: #e5ebf1;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-      padding: 8px;
+      font-family: 'Roboto', sans-serif;
+      padding: 4px;
     }
 
     .game-container {
-      max-width: 400px;
+      max-width: 320px;
       width: 100%;
-      border-radius: 36px;
-      background: linear-gradient(145deg, #1a1740, #0e0c24);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 0 2px #ff41d8 inset, 0 0 20px #b537f2;
-      padding: 16px;
-      position: relative; /* для абсолютного позиционирования popup */
+      border-radius: 24px;
+      background: #ffffff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.02);
+      padding: 8px;
+      position: relative;
     }
 
     h1 {
       text-align: center;
-      font-size: 2.4rem;
-      font-weight: 800;
-      letter-spacing: 4px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
       text-transform: uppercase;
-      color: #fff3b0;
-      text-shadow: 0 0 8px #ffb86b, 0 0 20px #ff2b9e, 0 0 40px #b600ff;
+      color: #2a5885;
       margin-bottom: 4px;
-      word-break: break-word;
     }
 
     .level-selector {
       display: flex;
-      gap: 6px;
+      gap: 4px;
       justify-content: center;
-      margin: 8px 0;
+      margin: 2px 0;
     }
 
     .level-btn {
-      background: #2d2555;
-      border: 2px solid #9f7aea;
-      color: #e0d4ff;
-      border-radius: 40px;
-      padding: 8px 14px;
-      font-weight: bold;
-      font-size: 0.9rem;
+      background: #f0f2f5;
+      border: 1px solid #d3d9de;
+      color: #2a5885;
+      border-radius: 30px;
+      padding: 5px 4px;
+      font-weight: 500;
+      font-size: 0.7rem;
       cursor: pointer;
       transition: 0.1s;
       flex: 1;
       text-transform: uppercase;
-      box-shadow: 0 3px 0 #140e2b;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     }
 
     .level-btn.active {
-      background: #b45eff;
-      color: #120b24;
-      border-color: #ffdb70;
-      box-shadow: 0 0 15px #fbffb9;
-      transform: scale(1.02);
+      background: #2a5885;
+      color: white;
+      border-color: #1d3d5c;
+      box-shadow: 0 2px 4px rgba(42, 88, 133, 0.3);
     }
 
     .level-btn:active {
-      transform: translateY(3px);
-      box-shadow: 0 0px 0 #140e2b;
+      transform: translateY(1px);
+      box-shadow: none;
     }
 
     .stats {
       display: flex;
       justify-content: space-between;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 60px;
-      padding: 12px 18px;
-      margin: 10px 0 15px;
-      border: 1px solid #ff7bff;
-      color: white;
-      font-weight: bold;
-      font-size: 1.2rem;
-      backdrop-filter: blur(4px);
+      background: #f0f2f5;
+      border-radius: 30px;
+      padding: 5px 10px;
+      margin: 4px 0 6px;
+      border: 1px solid #d3d9de;
+      color: #2a5885;
+      font-weight: 500;
+      font-size: 0.8rem;
     }
 
     .stats span {
-      color: #ffd966;
-      text-shadow: 0 0 10px #ffae00;
+      color: #000000;
+      font-weight: 700;
+    }
+
+    .timer-block {
+      background: #2a5885;
+      color: white;
+      border-radius: 30px;
+      padding: 3px 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 4px;
+      display: inline-block;
+      width: auto;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .canvas-wrapper {
       position: relative;
       width: 100%;
-      aspect-ratio: 3/4;
-      border-radius: 28px;
+      aspect-ratio: 300/330;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 0 30px #cc00ff, inset 0 0 20px #3a0066;
-      background: #130e23;
+      box-shadow: 0 0 0 1px #d3d9de inset;
+      background: #f0f2f5;
     }
 
     canvas {
       display: block;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 30% 30%, #291e4a, #080318);
+      background: #e5ebf1;
       touch-action: none;
     }
 
     .controls {
       display: flex;
-      gap: 12px;
-      margin-top: 16px;
+      gap: 8px;
+      margin-top: 6px;
     }
 
     .btn {
       flex: 1;
-      background: linear-gradient(145deg, #ff4dc7, #b500b5);
+      background: #2a5885;
       border: none;
-      border-radius: 60px;
-      padding: 14px 8px;
+      border-radius: 30px;
+      padding: 6px 4px;
       color: white;
-      font-weight: 800;
-      font-size: 1.2rem;
-      letter-spacing: 2px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
-      box-shadow: 0 6px 0 #4f0069, 0 10px 20px black;
+      box-shadow: 0 2px 0 #1d3d5c, 0 4px 8px rgba(0,0,0,0.1);
       transition: 0.07s;
       cursor: pointer;
-      border: 1px solid #ffb2f0;
+      border: 1px solid #1d3d5c;
     }
 
     .btn:active {
-      transform: translateY(6px);
-      box-shadow: 0 2px 0 #4f0069, 0 8px 20px black;
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #1d3d5c, 0 4px 8px rgba(0,0,0,0.1);
     }
 
     .btn:disabled {
@@ -152,57 +165,103 @@
       pointer-events: none;
     }
 
-    /* Абсолютный попап поверх canvas */
-    .result-popup {
+    .community-btn {
+      background: #ffffff;
+      border: 2px solid #2a5885;
+      border-radius: 30px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #2a5885;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: 0.1s;
+      margin-top: 8px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .community-btn:active {
+      background: #e5ebf1;
+      transform: translateY(1px);
+      box-shadow: none;
+    }
+
+    .rules-popup, .result-popup {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 90%;
-      max-width: 320px;
-      background: rgba(24, 16, 48, 0.95);
-      backdrop-filter: blur(8px);
-      border: 2px solid #ffb3ff;
-      border-radius: 40px;
-      padding: 20px;
+      width: 85%;
+      max-width: 250px;
+      background: #ffffff;
+      border: 2px solid #2a5885;
+      border-radius: 24px;
+      padding: 16px 12px;
       text-align: center;
-      color: #fad8ff;
-      box-shadow: 0 0 40px #eb7aff;
-      transition: 0.3s;
-      z-index: 10;
+      color: #2a5885;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      z-index: 20;
     }
 
-    .result-popup.hidden {
+    .rules-popup.hidden, .result-popup.hidden {
       display: none;
     }
 
-    .result-title {
-      font-size: 1.7rem;
-      font-weight: bold;
-      color: #fff2b5;
-      text-shadow: 0 0 15px #ffae00;
+    .rules-title, .result-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #2a5885;
       margin-bottom: 8px;
     }
 
+    .rules-text {
+      font-size: 0.85rem;
+      line-height: 1.4;
+      margin-bottom: 12px;
+      color: #1d3d5c;
+    }
+
+    .rules-close {
+      background: #2a5885;
+      border: none;
+      border-radius: 40px;
+      padding: 8px 20px;
+      font-weight: 600;
+      color: white;
+      font-size: 0.85rem;
+      cursor: pointer;
+      box-shadow: 0 2px 0 #1d3d5c;
+      transition: 0.1s;
+      border: 1px solid #1d3d5c;
+    }
+
+    .rules-close:active {
+      transform: translateY(2px);
+      box-shadow: none;
+    }
+
     .result-stats {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      color: #1d3d5c;
     }
 
     .result-quote {
-      font-size: 1.1rem;
+      font-size: 0.85rem;
       font-style: italic;
-      background: #2f2366;
-      padding: 12px;
-      border-radius: 30px;
-      border-left: 6px solid #ffa07a;
+      background: #f0f2f5;
+      padding: 8px;
+      border-radius: 20px;
+      border-left: 4px solid #2a5885;
+      color: #1d3d5c;
     }
 
     .footer {
       text-align: center;
-      margin-top: 12px;
-      color: #b5a5da;
-      font-size: 0.7rem;
+      margin-top: 4px;
+      color: #8a9eb0;
+      font-size: 0.55rem;
     }
   </style>
 </head>
@@ -211,20 +270,36 @@
     <h1>БУМ ТАП</h1>
 
     <div class="level-selector">
-      <button class="level-btn active" data-level="easy">🌟 легкий</button>
+      <button class="level-btn active" data-level="easy">🌟 лёгкий</button>
       <button class="level-btn" data-level="medium">⚡ средний</button>
       <button class="level-btn" data-level="hard">💀 сложный</button>
     </div>
 
     <div class="stats">
       <div>💥 <span id="score">0</span></div>
-      <div>⏱️ <span id="timer">0</span>с</div>
       <div>❤️ <span id="lives">3</span></div>
     </div>
 
+    <!-- Таймер обратного отсчёта -->
+    <div class="timer-block" id="timerDisplay">01:00</div>
+
     <div class="canvas-wrapper">
-      <canvas id="gameCanvas" width="360" height="480"></canvas>
-      <!-- попап результата внутри canvas-wrapper, позиционируется абсолютно -->
+      <canvas id="gameCanvas" width="300" height="330"></canvas>
+
+      <!-- Попап с правилами -->
+      <div class="rules-popup" id="rulesPopup">
+        <div class="rules-title">⚙️ правила</div>
+        <div class="rules-text">
+          🔹 зелёный ➕1 очко<br>
+          🔸 красный ➖1 жизнь<br>
+          🔶 золотой ➕5 очков и взрыв<br>
+          Шары крупные, лопать быстро!<br>
+          Время: 60 секунд
+        </div>
+        <button class="rules-close" id="closeRulesBtn">понятно</button>
+      </div>
+
+      <!-- Попап результата -->
       <div class="result-popup hidden" id="resultPopup">
         <div class="result-title" id="resultTitle">ИГРА ОКОНЧЕНА</div>
         <div class="result-stats" id="resultStats"></div>
@@ -237,7 +312,10 @@
       <button class="btn" id="restartBtn">↺ рестарт</button>
     </div>
 
-    <div class="footer">жми на шары, пока не лопнут!</div>
+    <!-- Кнопка перехода в сообщество -->
+    <button class="community-btn" id="communityBtn">👥 Наше сообщество</button>
+
+    <div class="footer">тапай по шарам, пока время не вышло!</div>
   </div>
 
   <script src="https://unpkg.com/@vkontakte/vk-bridge@2.1.4/dist/browser.min.js"></script>
@@ -250,29 +328,32 @@
       const canvas = document.getElementById('gameCanvas');
       const ctx = canvas.getContext('2d');
       const scoreSpan = document.getElementById('score');
-      const timerSpan = document.getElementById('timer');
       const livesSpan = document.getElementById('lives');
+      const timerDisplay = document.getElementById('timerDisplay');
       const startBtn = document.getElementById('startBtn');
       const restartBtn = document.getElementById('restartBtn');
       const resultPopup = document.getElementById('resultPopup');
       const resultTitle = document.getElementById('resultTitle');
       const resultStats = document.getElementById('resultStats');
       const resultQuote = document.getElementById('resultQuote');
+      const rulesPopup = document.getElementById('rulesPopup');
+      const closeRulesBtn = document.getElementById('closeRulesBtn');
+      const communityBtn = document.getElementById('communityBtn');
 
-      const w = canvas.width;
-      const h = canvas.height;
+      const w = canvas.width;   // 300
+      const h = canvas.height;  // 330
 
-      // Настройки уровней
+      // Уровни с крупными шарами
       const levelSettings = {
-        easy: { spawnInterval: 800, ballLifetime: 1200, green: 0.6, red: 0.25, gold: 0.15, lives: 3, radius: 24 },
-        medium: { spawnInterval: 600, ballLifetime: 1000, green: 0.55, red: 0.3, gold: 0.15, lives: 3, radius: 22 },
-        hard: { spawnInterval: 400, ballLifetime: 800, green: 0.45, red: 0.4, gold: 0.15, lives: 2, radius: 20 }
+        easy: { spawnInterval: 700, ballLifetime: 1100, green: 0.6, red: 0.25, gold: 0.15, lives: 3, radius: 26 },
+        medium: { spawnInterval: 550, ballLifetime: 900, green: 0.55, red: 0.3, gold: 0.15, lives: 3, radius: 23 },
+        hard: { spawnInterval: 400, ballLifetime: 700, green: 0.45, red: 0.4, gold: 0.15, lives: 2, radius: 20 }
       };
 
       let currentLevel = 'easy';
-      let BALL_RADIUS = 24;
-      let SPAWN_INTERVAL = 800;
-      let BALL_LIFETIME = 1200;
+      let BALL_RADIUS = 26;
+      let SPAWN_INTERVAL = 700;
+      let BALL_LIFETIME = 1100;
       let GREEN_RATIO = 0.6;
       let RED_RATIO = 0.25;
       let GOLD_RATIO = 0.15;
@@ -284,21 +365,19 @@
       let gameLoopId = null;
       let balls = [];
       let particles = [];
-      let startTime = 0;
-      let elapsedSeconds = 0;
+      let gameStartTimestamp = 0;
       let timerInterval = null;
       let lastSpawnTime = 0;
+      const GAME_DURATION = 60; // секунд
 
       const BALL_TYPES = { GREEN: 'green', RED: 'red', GOLD: 'gold' };
 
-      // ---------- Приятные звуки ----------
+      // ---------- Звуки ----------
       let audioCtx = null;
-
       function initAudio() {
         if (audioCtx) return;
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       }
-
       function playSound(type) {
         if (!audioCtx) initAudio();
         if (audioCtx.state === 'suspended') audioCtx.resume();
@@ -311,33 +390,33 @@
         gain.connect(audioCtx.destination);
 
         switch (type) {
-          case 'green': // мягкий колокольчик
+          case 'green':
             osc.frequency.value = 880;
             gain.gain.setValueAtTime(0.1, now);
             gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
             osc.start(now);
             osc.stop(now + 0.15);
             break;
-          case 'red': // низкий "пуф"
+          case 'red':
             osc.frequency.value = 220;
             gain.gain.setValueAtTime(0.15, now);
             gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
             osc.start(now);
             osc.stop(now + 0.2);
             break;
-          case 'gold': // короткая фанфара (две ноты)
-            osc.frequency.value = 1046.5; // до
+          case 'gold':
+            osc.frequency.value = 1046.5;
             gain.gain.setValueAtTime(0.15, now);
             gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
             osc.start(now);
             osc.stop(now + 0.1);
             const osc2 = audioCtx.createOscillator();
-            osc2.frequency.value = 1318.5; // ми
+            osc2.frequency.value = 1318.5;
             osc2.connect(gain);
             osc2.start(now + 0.1);
             osc2.stop(now + 0.2);
             break;
-          case 'explosion': // приятный "вууш"
+          case 'explosion':
             osc.frequency.value = 300;
             gain.gain.setValueAtTime(0.2, now);
             gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
@@ -347,15 +426,24 @@
         }
       }
 
-      // ---------- Таймер ----------
+      // ---------- Таймер обратного отсчёта ----------
+      function formatTime(seconds) {
+        const sec = Math.floor(seconds);
+        return `00:${sec < 10 ? '0' : ''}${sec}`;
+      }
+
       function startTimer() {
         stopTimer();
-        startTime = performance.now() / 1000;
+        gameStartTimestamp = performance.now() / 1000;
         timerInterval = setInterval(() => {
-          if (gameActive) {
-            const now = performance.now() / 1000;
-            elapsedSeconds = Math.floor(now - startTime);
-            timerSpan.innerText = elapsedSeconds;
+          if (!gameActive) return;
+          const now = performance.now() / 1000;
+          const elapsed = now - gameStartTimestamp;
+          const remaining = Math.max(0, GAME_DURATION - elapsed);
+          timerDisplay.innerText = formatTime(remaining);
+          if (remaining <= 0) {
+            // время вышло — завершаем игру
+            gameOver();
           }
         }, 200);
       }
@@ -395,8 +483,7 @@
         lives = START_LIVES;
         balls = [];
         particles = [];
-        elapsedSeconds = 0;
-        timerSpan.innerText = '0';
+        timerDisplay.innerText = formatTime(GAME_DURATION);
         updateStats();
         stopTimer();
         gameActive = false;
@@ -428,25 +515,27 @@
 
       function showResult() {
         const totalScore = score;
-        const time = elapsedSeconds;
+        const livesLeft = lives;
 
+        // Развёрнутый юмористический комментарий с призывом
         let quote = '';
-        if (totalScore >= 50) quote = 'Ты просто метеор! 🚀 Шары боятся тебя!';
-        else if (totalScore >= 30) quote = 'Отличный результат! Пальцы натренированы. 💪';
-        else if (totalScore >= 15) quote = 'Неплохо, но можно лучше. Попробуй ещё!';
-        else if (totalScore >= 5) quote = 'Ты точно целился? Шары смеются... 😄';
-        else quote = 'Ой, всё! Даже шары плачут. 🥲';
+        if (totalScore >= 50) {
+          quote = 'Ты просто машина! 🚀 50+ очков за минуту? Твои пальцы достойны олимпиады! Приходи ещё, установи новый рекорд!';
+        } else if (totalScore >= 35) {
+          quote = 'Отличный результат! 👏 Но до идеала ещё есть куда расти. Тренируй реакцию и побей свой рекорд!';
+        } else if (totalScore >= 20) {
+          quote = 'Неплохо, но шары явно были быстрее 😉 Ещё пара партий — и ты догонишь их! Жми "старт" снова!';
+        } else if (totalScore >= 10) {
+          quote = 'Хм, похоже, ты сегодня не в форме. 🥱 Но мы верим в тебя! Сыграй ещё — докажи, что можешь лучше!';
+        } else {
+          quote = 'Ой, всё! Шары смеются над тобой 🎈 Не сдавайся, попробуй ещё раз — у тебя обязательно получится!';
+        }
 
-        resultStats.innerText = `💥 очки: ${totalScore}  |  ⏱️ время: ${time}с`;
+        resultStats.innerText = `💥 очки: ${totalScore}  |  ❤️ осталось жизней: ${livesLeft}`;
         resultQuote.innerText = `«${quote}»`;
         resultPopup.classList.remove('hidden');
-
-        if (window.vkBridge) {
-          vkBridge.send('VKWebAppResizeWindow', { width: 100, height: document.documentElement.scrollHeight });
-        }
       }
 
-      // Спавн шара (базовая позиция)
       function spawnBall() {
         const r = Math.random();
         let type;
@@ -458,31 +547,28 @@
         const baseY = BALL_RADIUS + Math.random() * (h - 2 * BALL_RADIUS);
 
         balls.push({
-          baseX, baseY,         // опорные координаты (центр колебаний)
-          x: baseX, y: baseY,   // текущие координаты (будут обновляться анимацией)
+          baseX, baseY,
+          x: baseX, y: baseY,
           radius: BALL_RADIUS,
           type: type,
           spawnTime: performance.now(),
-          phaseX: Math.random() * 2 * Math.PI, // случайная фаза для покачивания
+          phaseX: Math.random() * 2 * Math.PI,
           phaseY: Math.random() * 2 * Math.PI,
-          speed: 0.002 + Math.random() * 0.003  // скорость покачивания
+          speed: 0.002 + Math.random() * 0.003
         });
       }
 
-      // Обновление позиций шаров (плавающее движение)
       function updateBallPositions(now) {
         balls.forEach(b => {
-          // Плавное синусоидальное смещение от базовой позиции
           const t = now * b.speed;
-          b.x = b.baseX + Math.sin(t + b.phaseX) * 6;   // амплитуда 6 пикселей
+          b.x = b.baseX + Math.sin(t + b.phaseX) * 6;
           b.y = b.baseY + Math.cos(t + b.phaseY) * 4;
         });
       }
 
-      // Взрыв золотого шара
       function explodeBall(ball) {
         playSound('explosion');
-        const blastRadius = 80;
+        const blastRadius = 90;
         balls = balls.filter(b => {
           if (b === ball) return false;
           const dx = b.x - ball.x;
@@ -503,21 +589,19 @@
           return true;
         });
 
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 20; i++) {
           particles.push({
-            x: ball.x + (Math.random() - 0.5) * 30,
-            y: ball.y + (Math.random() - 0.5) * 30,
-            vx: (Math.random() - 0.5) * 4,
-            vy: (Math.random() - 0.5) * 4,
-            life: 1.2
+            x: ball.x + (Math.random() - 0.5) * 40,
+            y: ball.y + (Math.random() - 0.5) * 40,
+            vx: (Math.random() - 0.5) * 5,
+            vy: (Math.random() - 0.5) * 5,
+            life: 1.3
           });
         }
       }
 
-      // Обработка касания
       function handleTap(e) {
         if (!gameActive) return;
-
         e.preventDefault();
         const rect = canvas.getBoundingClientRect();
         const scaleX = canvas.width / rect.width;
@@ -539,7 +623,6 @@
           const dist = Math.sqrt(dx*dx + dy*dy);
           if (dist <= b.radius) {
             playSound(b.type);
-
             switch (b.type) {
               case BALL_TYPES.GREEN:
                 score += 1;
@@ -555,7 +638,6 @@
             }
             balls.splice(i, 1);
             updateStats();
-
             if (lives <= 0) {
               gameOver();
             }
@@ -564,102 +646,82 @@
         }
       }
 
-      // Обновление игры
       function update(now) {
         if (!gameActive) return;
-
-        // Спавн
         if (now - lastSpawnTime > SPAWN_INTERVAL) {
           spawnBall();
           lastSpawnTime = now;
         }
-
-        // Удаление старых
         balls = balls.filter(b => (now - b.spawnTime) < BALL_LIFETIME);
-
-        // Обновление позиций шаров (плавание)
         updateBallPositions(now);
-
-        // Частицы
         for (let i = particles.length - 1; i >= 0; i--) {
           let p = particles[i];
           p.x += p.vx;
           p.y += p.vy;
           p.life -= 0.02;
-          if (p.life <= 0 || p.y < 0 || p.y > h || p.x < 0 || p.x > w) {
-            particles.splice(i, 1);
-          }
+          if (p.life <= 0 || p.y < 0 || p.y > h || p.x < 0 || p.x > w) particles.splice(i, 1);
         }
       }
 
-      // Отрисовка
       function draw() {
         ctx.clearRect(0, 0, w, h);
-
-        // Частицы
         particles.forEach(p => {
           ctx.globalAlpha = p.life;
-          ctx.fillStyle = '#ffe38f';
+          ctx.fillStyle = '#2a5885';
           ctx.beginPath();
-          ctx.arc(p.x, p.y, 3, 0, 2 * Math.PI);
+          ctx.arc(p.x, p.y, 4, 0, 2 * Math.PI);
           ctx.fill();
         });
         ctx.globalAlpha = 1;
 
-        // Шары
         balls.forEach(b => {
-          const grad = ctx.createRadialGradient(b.x-8, b.y-8, 5, b.x, b.y, b.radius+5);
+          let color1, color2;
           switch (b.type) {
             case BALL_TYPES.GREEN:
-              grad.addColorStop(0, '#a0ff9e');
-              grad.addColorStop(1, '#1f8b1f');
+              color1 = '#c8e6c9'; color2 = '#2e7d32';
               break;
             case BALL_TYPES.RED:
-              grad.addColorStop(0, '#ff9292');
-              grad.addColorStop(1, '#a10000');
+              color1 = '#ffcdd2'; color2 = '#b71c1c';
               break;
             case BALL_TYPES.GOLD:
-              grad.addColorStop(0, '#ffe066');
-              grad.addColorStop(1, '#b8860b');
+              color1 = '#fff9c4'; color2 = '#b26a00';
               break;
           }
+          const grad = ctx.createRadialGradient(b.x-6, b.y-6, 5, b.x, b.y, b.radius+6);
+          grad.addColorStop(0, color1);
+          grad.addColorStop(1, color2);
+
           ctx.beginPath();
           ctx.arc(b.x, b.y, b.radius, 0, 2 * Math.PI);
           ctx.fillStyle = grad;
           ctx.fill();
-          ctx.strokeStyle = 'white';
-          ctx.lineWidth = 3;
+          ctx.strokeStyle = '#2a5885';
+          ctx.lineWidth = 2;
           ctx.stroke();
 
-          // Блик
           ctx.beginPath();
-          ctx.arc(b.x-6, b.y-6, 6, 0, 2*Math.PI);
-          ctx.fillStyle = 'rgba(255,255,255,0.3)';
+          ctx.arc(b.x-5, b.y-5, 7, 0, 2*Math.PI);
+          ctx.fillStyle = 'rgba(255,255,255,0.5)';
           ctx.fill();
 
-          // Маленькая ниточка для имитации воздушного шара
           ctx.beginPath();
           ctx.moveTo(b.x - 3, b.y + b.radius - 2);
           ctx.lineTo(b.x + 3, b.y + b.radius + 4);
           ctx.lineTo(b.x - 3, b.y + b.radius + 8);
-          ctx.fillStyle = '#8b6b4d';
+          ctx.fillStyle = '#8d6e63';
           ctx.fill();
         });
 
-        // Если игра окончена, показываем полупрозрачную маску (необязательно, попап уже есть)
         if (!gameActive && lives === 0) {
-          ctx.globalAlpha = 0.3;
-          ctx.fillStyle = '#000';
+          ctx.globalAlpha = 0.2;
+          ctx.fillStyle = '#2a5885';
           ctx.fillRect(0, 0, w, h);
           ctx.globalAlpha = 1;
         }
       }
 
       function gameTick(timestamp) {
-        if (!gameActive) {
-          draw();
-          return;
-        }
+        if (!gameActive) { draw(); return; }
         update(timestamp);
         draw();
         if (gameActive) gameLoopId = requestAnimationFrame(gameTick);
@@ -671,18 +733,32 @@
         livesSpan.innerText = lives;
       }
 
-      // События
+      // ---------- Правила ----------
+      function showRules() { rulesPopup.classList.remove('hidden'); }
+      function hideRules() { rulesPopup.classList.add('hidden'); }
+
+      window.addEventListener('load', () => setTimeout(showRules, 500));
+      closeRulesBtn.addEventListener('click', hideRules);
+
+      // Кнопка сообщества (замените ссылку)
+      communityBtn.addEventListener('click', () => {
+        const communityUrl = 'https://vk.com/durov'; // замените на свою
+        if (window.vkBridge) {
+          vkBridge.send('VKWebAppOpenLink', { url: communityUrl });
+        } else {
+          window.open(communityUrl, '_blank');
+        }
+      });
+
       canvas.addEventListener('touchstart', handleTap, { passive: false });
       canvas.addEventListener('mousedown', handleTap);
 
       startBtn.addEventListener('click', startGame);
       restartBtn.addEventListener('click', resetGame);
 
-      // Инициализация
       setLevel('easy');
       resetGame();
 
-      // Аудио при первом взаимодействии
       function initAudioOnFirstTap() {
         initAudio();
         document.removeEventListener('touchstart', initAudioOnFirstTap);
